@@ -1,11 +1,11 @@
 export const tabsfr = [
     {
-      id: "tab1",
-      label: "What's new fr",
+      id: "profile",
+      label: "Profile",
       items: [],
     },
     {
-      id: "tab2",
+      id: "settings",
       label: "Solo Baskets",
       items: [
         {
