@@ -1,12 +1,8 @@
 export const tabsfr = [
+   
     {
-      id: "profile",
-      label: "Profile",
-      items: [],
-    },
-    {
-      id: "settings",
-      label: "Solo Baskets",
+      id: "News Feed",
+      label: "News Feed",
       items: [
         {
           foodname: "Basket S: wings, strips, nuggets",
@@ -52,6 +48,11 @@ export const tabsfr = [
           unit: "₸",
         },
       ],
+    },
+    {
+      id: "profile",
+      label: "Profile",
+      items: [],
     },
     {
       id: "tab3",

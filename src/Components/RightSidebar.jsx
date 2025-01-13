@@ -42,7 +42,7 @@ const RightSidebar = () => {
               className="w-10 h-10 rounded-full object-cover"
             />
             <div className="flex flex-col justify-center">
-              <h1 className="font-bold text-md leading-3">Rafayat Rakib</h1>
+              <h1 className="font-bold text-md leading-3">Safa hossain</h1>
               <p className="text-gray-500 leading-5">React Developer</p>
             </div>
           </div>
@@ -54,7 +54,7 @@ const RightSidebar = () => {
             />
             <div className="flex flex-col justify-center">
               <h1 className="font-bold text-md leading-3">Rafayat Rakib</h1>
-              <p className="text-gray-500 leading-5">React Developer</p>
+              <p className="text-gray-500 leading-5">Video Editor</p>
             </div>
           </div>
         </div>

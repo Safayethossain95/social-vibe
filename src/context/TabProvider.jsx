@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const TabContext = createContext();
 
 export const TabProvider = ({ children }) => {
-  const [activeTab, setActiveTab] = useState("profile");
+  const [activeTab, setActiveTab] = useState("News Feed");
 
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);

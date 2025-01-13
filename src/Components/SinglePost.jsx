@@ -4,6 +4,17 @@ const SinglePost = () => {
   return (
     <>
     <div className="single-post p-4 mt-5 rounded-[20px] border-[#8C52FC] border ">
+    <div className="user-widget my-2 flex items-center space-x-4">
+            <img
+              src="/assets/images/pro_pic.png"
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <div className="flex flex-col justify-center">
+              <h1 className="font-bold text-md leading-3">Safa hossain</h1>
+              <p className="text-gray-500 leading-5">React Developer</p>
+            </div>
+          </div>
             <b className="block ">
               React Development: A Comprehensive Overview
             </b>{" "}
@@ -19,6 +30,7 @@ const SinglePost = () => {
             how it has influenced the broader ecosystem of web development.
             Origins of React React was created by Jordan Walke, a software
             engineer at Facebook, in 2011.
+            
           </div>
     </>
   )
