@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { backend_api } from "../config/config";
@@ -24,20 +25,27 @@ const MainContent = () => {
     window.addEventListener("resize", updatePadding);
     return () => window.removeEventListener("resize", updatePadding);
   }, []);
-  const { activeTab } = useTabContext();
-
-  const [file, setFile] = useState(null); // State to store the selected file
+  const { activeTab,profileinfo,isLogin, setIsLogin } = useTabContext();
+// State to store the selected file
   const [imageUrl, setImageUrl] = useState("");
 
-  useEffect(() => {
-    axios
-      .get(`${backend_api}/userget`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }, []);
+  useEffect(()=>{
+   
+    localStorage.setItem("profileinfo",JSON.stringify(profileinfo))
+    const pro_info = JSON.parse(localStorage.getItem("profileinfo"))
+    console.log(pro_info)
+    setImageUrl(pro_info?.profilePicture)
+  
+  },[profileinfo])
+  // useEffect(() => {
+  //   axios
+  //     .get(`${backend_api}/userget`)
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+  // }, []);
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
-    setFile(selectedFile); // Set the selected file to state
+     // Set the selected file to state
     console.log(selectedFile);
     if (!selectedFile) {
       return alert("Please select an image first!");
@@ -71,13 +79,13 @@ const MainContent = () => {
   // const cld = new Cloudinary({ cloud: { cloudName: "dahrqm9pr" } });
 
   // Configure transformations for the uploaded image (optional)
-  const img = imageUrl; // Default image when no image is uploaded
+ // Default image when no image is uploaded
 
   return (
     <>
       {activeTab === "profile" && (
-        <div className="rounded-lg p-3 pt-[30px] col-span-1  w-[100%]  scrollbar-hide">
-          <div className="maincontent  p-6    bg-[#fff]  rounded-lg shadow-lg">
+        <div className=" p-3 mt-[80px] pt-[30px] col-span-1  w-[100%]  scrollbar-hide">
+          <div className="maincontent  p-6    bg-[#fff]  rounded-[20px] shadow-lg">
             <div className="topimg relative">
               <img
                 className="rounded-[30px] w-full"
@@ -128,7 +136,7 @@ const MainContent = () => {
       )}
       {activeTab === "News Feed" && (
         <>
-          <div className="bg-white rounded-lg p-3 mt-[30px] col-span-1  w-[100%]  scrollbar-hide">
+          <div className="bg-white rounded-[20px] p-3 mt-[100px] col-span-1  w-[100%]  scrollbar-hide">
 
             <div>
               <textarea placeholder="write something" type="text" className="outline-none p-3 h-[150px] w-full border-[#8C52FC] border  rounded-[20px]" />

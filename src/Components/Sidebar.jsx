@@ -32,22 +32,18 @@ const Sidebar = ({ tabs }) => {
             width: `calc(2 / 12 * 100%)`, // 2.5fr based on a 12-column layout
             left: `${containerPadding}px`, // Adjusted to the container's right edge
           }}
-          className="div min-w-[220px] max-w-[280px]  h-[calc(100vh-60px)]  fixed top-[30px]"
+          className="div min-w-[220px] max-w-[280px]  h-[calc(100vh-130px)]  fixed top-[100px]"
         >
           <ul className=" border bg-[#ffffff] w-full h-full p-2 rounded-[20px] pointer-events-auto">
             
-            <img
-              className="w-[100%] my-6 "
-              src="/assets/images/logo.png"
-              alt=""
-            />
+            
 
             {tabs.map((tab) => (
               <li
                 key={tab.id}
                 onClick={() =>  handleTabChange(tab.id)}
                 className={`h-[48px] ps-[14px] flex items-center rounded-[16px] cursor-pointer hover:bg-[#8b52fc82] my-1 duration-300 
-                  ${activeTab === tab.id ? "bg-white font-bold" : ""} ${tab.id === activeTab&&`bg-[#8b52fc82]`}
+                  ${activeTab === tab.id ? " font-bold bg-[#8C52FC]" : ""} 
                    `}
               >
                 {tab.label}

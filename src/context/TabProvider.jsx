@@ -9,9 +9,11 @@ export const TabProvider = ({ children }) => {
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
   };
-
+  const [isLogin, setIsLogin] = useState(false);
+  const [userid,setUserId] = useState(null);
+  const [profileinfo,setprofileinfo] = useState(null);
   return (
-    <TabContext.Provider value={{ activeTab, handleTabChange }}>
+    <TabContext.Provider value={{ activeTab, handleTabChange ,isLogin, setIsLogin,userid,setUserId,profileinfo,setprofileinfo}}>
       {children}
     </TabContext.Provider>
   );

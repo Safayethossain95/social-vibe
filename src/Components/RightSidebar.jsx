@@ -25,13 +25,13 @@ const RightSidebar = () => {
       }, []);
   return (
     <>
-     <div className="container relative">
+     <div className="container ">
         <div
           style={{
             width: `calc(2 / 12 * 100%)`, // 2.5fr based on a 12-column layout
             right: `${containerPadding}px`, // Adjusted to the container's right edge
           }}
-          className="bg-white min-w-[220px] max-w-[280px] p-4 mt-[30px] hidden lg:block fixed  h-[calc(100vh-60px)]     right-0  rounded-[24px] flex-col lg-flex-row"
+          className="bg-white min-w-[220px] max-w-[280px] p-4 mt-[100px] hidden lg:block fixed  h-[calc(100vh-130px)]     right-0  rounded-[24px] flex-col lg-flex-row"
         >
           <h1 className="text-xl font-bold">Followers</h1>
 
