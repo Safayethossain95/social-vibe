@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unknown-property */
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { loginUser } from "../api/authApi";
 import { useTabContext } from "../context/TabProvider";
 import { useNavigate } from "react-router-dom";
 
 const LoginComp = () => {
     const navigate = useNavigate();
-    const { isLogin,setIsLogin ,setUserId} = useTabContext();
+    const { setIsLogin ,setUserId} = useTabContext();
     const [error, setError] = useState("");
     const [loading,setloading]=useState(false)
     const [formData, setFormData] = useState({
@@ -22,20 +22,24 @@ const LoginComp = () => {
           [id]: value, // Dynamically update the key based on input id
         }));
       };
+    
+      
   
     const handleLogin = async (e) => {
       e.preventDefault();
       setError("");
+      
       
   
       try {
         console.log(formData);
         const data = await loginUser(formData);
         if(data){
-            localStorage.setItem("islogin",true)
             setIsLogin(true)
             setloading(true)
             console.log("user id:", data.data.user.id);
+            localStorage.setItem("token",data.data.token)
+            localStorage.setItem("uid",data.data.user.id)
             setUserId(data.data.user.id)
             navigate("/")
         }

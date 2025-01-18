@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { getUser } from "../api/authApi";
+import { Link, useLocation,useNavigate } from "react-router-dom";
+import { getUser, logoutUser } from "../api/authApi";
 import { useTabContext } from "../context/TabProvider";
+import Cookies from "js-cookie";
 const MyNavbar = () => {
-  const location = useLocation(); // Access the location object
+  const location = useLocation();
+  const navigate = useNavigate() // Access the location object
   const pageAddress = location.pathname.substring(1);
   console.log(pageAddress);
   const {
@@ -18,7 +20,8 @@ const MyNavbar = () => {
   useEffect(() => {
     async function fetchdata() {
       try {
-        const data = await getUser(userid);
+        const uid = localStorage.getItem("uid");
+        const data = await getUser(uid);
         if (data) {
           setprofileinfo(data.data);
         }
@@ -28,22 +31,39 @@ const MyNavbar = () => {
     }
     
       fetchdata();
-    
+      console.log(Cookies.get('uid'))
   
   }, []);
 
-useEffect(() => {
-    const storedLoginStatus = JSON.parse(localStorage.getItem("isLogin"));
-    if (storedLoginStatus) {
-        setIsLogin(storedLoginStatus);
-    }
-}, []);
+  useEffect(() => {
+    function init() {
+      const data = localStorage.getItem("token"); // Get the token from localStorage
+      
+      if (data) {
+        console.log(data);  // Log the token to check if it's correct
+        setIsLogin(true);
   
-  const handlelogout = () => {
-    setActiveTab("News Feed");
-    localStorage.setItem("islogin",false);
-    setIsLogin(false);
-  };
+      } else {
+        setIsLogin(false);
+      }
+    }
+  
+    init();
+  }, [isLogin]);
+  
+  
+const handlelogout =async () => {
+  
+// Clear the 'uid' cookie
+  const data = await logoutUser()
+  console.log(data)
+  setIsLogin(false);
+  localStorage.removeItem("token");
+  setActiveTab("News Feed"); // Redirect to login page
+  navigate("/login");
+};
+
+
 
   return (
     <div
@@ -56,13 +76,13 @@ useEffect(() => {
       <div className="container h-full flex items-center justify-between">
         <img src="/assets/images/logo.png" alt="logo" className="h-[40px]" />
         <div className="flex items-center space-x-3">
-          {JSON.parse(localStorage.getItem("islogin")) && (
+          {isLogin ? (
             <img
               src={profileinfo?.profilePicture}
               alt="profile"
               className="h-[36px] w-[36px] rounded-full object-cover"
             />
-          )}
+          ):""}
 
           {isLogin ? (
             <>

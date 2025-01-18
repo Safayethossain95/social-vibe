@@ -37,4 +37,30 @@ export const getUser = async (id) => {
       throw error.response
     }
   };
+  export const authUser = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log(token)
+      const response = await axios.get(`${backend_api}/auth/user`, 
+        {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        withCredentials: true, // Include credentials (cookies) with the request
+      });
+      return response;
+    } catch (error) {
+      throw error.response; // Handle the error response
+    }
+  };
+  
+export const logoutUser = async () => {
+    try {
+      const response = await axios.post(`${backend_api}/logout`);
+      return response; 
+    } catch (error) {
+      throw error.response
+    }
+  };
+
 

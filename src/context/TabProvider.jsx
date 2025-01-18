@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 const TabContext = createContext();
@@ -15,19 +16,9 @@ export const TabProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   // Check login status on app load
-  useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        const response = await axios.get("/api/auth/me", { withCredentials: true });
-        setUser(response.data.user);
-      } catch (error) {
-        setUser(null); // Not logged in
-      }
-    };
-    checkLogin();
-  }, []);
+ 
   return (
-    <TabContext.Provider value={{ activeTab, handleTabChange ,isLogin, setIsLogin,userid,setUserId,profileinfo,setprofileinfo}}>
+    <TabContext.Provider value={{ activeTab, handleTabChange ,isLogin, setIsLogin,userid,setUserId,profileinfo,setprofileinfo,setActiveTab}}>
       {children}
     </TabContext.Provider>
   );
