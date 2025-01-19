@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const LoginComp = () => {
     const navigate = useNavigate();
     const { setIsLogin ,setUserId} = useTabContext();
-    const [error, setError] = useState("");
+    
     const [loading,setloading]=useState(false)
     const [formData, setFormData] = useState({
         email: "",
@@ -27,7 +27,7 @@ const LoginComp = () => {
   
     const handleLogin = async (e) => {
       e.preventDefault();
-      setError("");
+    
       
       
   
@@ -38,13 +38,13 @@ const LoginComp = () => {
             setIsLogin(true)
             setloading(true)
             console.log("user id:", data.data.user.id);
-            localStorage.setItem("token",data.data.token)
+            // localStorage.setItem("token",data.data.token)
             localStorage.setItem("uid",data.data.user.id)
             setUserId(data.data.user.id)
             navigate("/")
         }
       } catch (err) {
-        setError(err || "An error occurred");
+        console.log(err || "An error occurred");
       } 
     };
   return (

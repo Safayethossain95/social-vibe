@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Link, useLocation,useNavigate } from "react-router-dom";
-import { getUser, logoutUser } from "../api/authApi";
+import { authUser, getUser, logoutUser } from "../api/authApi";
 import { useTabContext } from "../context/TabProvider";
-import Cookies from "js-cookie";
+
 const MyNavbar = () => {
   const location = useLocation();
   const navigate = useNavigate() // Access the location object
@@ -12,7 +13,6 @@ const MyNavbar = () => {
     setActiveTab,
     isLogin,
     setIsLogin,
-    userid,
     profileinfo,
     setprofileinfo,
   } = useTabContext();
@@ -31,35 +31,28 @@ const MyNavbar = () => {
     }
     
       fetchdata();
-      console.log(Cookies.get('uid'))
   
   }, []);
 
   useEffect(() => {
-    function init() {
-      const data = localStorage.getItem("token"); // Get the token from localStorage
-      
-      if (data) {
-        console.log(data);  // Log the token to check if it's correct
+    async function init() {
+      const data = await authUser(); 
+      if (data.status === 200) {
+        console.log(data.status); 
         setIsLogin(true);
-  
       } else {
         setIsLogin(false);
       }
     }
-  
     init();
-  }, [isLogin]);
+  }, []);
   
   
 const handlelogout =async () => {
-  
-// Clear the 'uid' cookie
   const data = await logoutUser()
   console.log(data)
   setIsLogin(false);
-  localStorage.removeItem("token");
-  setActiveTab("News Feed"); // Redirect to login page
+  setActiveTab("News Feed");
   navigate("/login");
 };
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signupUser } from "../api/authApi";
+import toast from "react-hot-toast";
 
 const SignUpComp = () => {
   const [formData, setFormData] = useState({
@@ -26,10 +27,10 @@ const SignUpComp = () => {
           try {
             console.log(formData);
             const data = await signupUser(formData);
-            console.log("Login Successful:", data);
-            alert("Login successful!");
+            toast.success("Sign Up Successful:", data);
+            
           } catch (err) {
-            setError(err || "An error occurred");
+            toast.error(err || "Sign Up Failed");
           } finally {
             setLoading(false);
           }

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const TabContext = createContext();
 
@@ -13,7 +13,7 @@ export const TabProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [userid,setUserId] = useState(null);
   const [profileinfo,setprofileinfo] = useState(null);
-  const [user, setUser] = useState(null);
+ 
 
   // Check login status on app load
  
