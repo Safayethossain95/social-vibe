@@ -3,6 +3,7 @@ import {  useState } from "react";
 import { loginUser } from "../api/authApi";
 import { useTabContext } from "../context/TabProvider";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const LoginComp = () => {
     const navigate = useNavigate();
@@ -42,9 +43,11 @@ const LoginComp = () => {
             localStorage.setItem("uid",data.data.user.id)
             setUserId(data.data.user.id)
             navigate("/")
+        }else{
+          toast.error("Server Error")
         }
       } catch (err) {
-        console.log(err || "An error occurred");
+        toast.error(err || "Could'n Connect to Server");
       } 
     };
   return (

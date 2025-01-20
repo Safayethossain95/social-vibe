@@ -6,19 +6,21 @@ const TabContext = createContext();
 
 export const TabProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState("News Feed");
-
+  const [load,setLoad] = useState(false)
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
+    setLoad(true)
   };
   const [isLogin, setIsLogin] = useState(false);
   const [userid,setUserId] = useState(null);
   const [profileinfo,setprofileinfo] = useState(null);
- 
-
+  const [imageUrl, setImageUrl] = useState("");
+  
   // Check login status on app load
  
   return (
-    <TabContext.Provider value={{ activeTab, handleTabChange ,isLogin, setIsLogin,userid,setUserId,profileinfo,setprofileinfo,setActiveTab}}>
+    <TabContext.Provider value={{ activeTab, handleTabChange ,isLogin, setIsLogin,userid,setUserId,profileinfo,setprofileinfo,setActiveTab,imageUrl,
+      setImageUrl,load,setLoad}}>
       {children}
     </TabContext.Provider>
   );

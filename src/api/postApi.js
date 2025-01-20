@@ -30,3 +30,22 @@ export const createPost = async (formdata) => {
       throw error.response; // Throw the error response for handling in the caller
     }
   };
+
+  export const fetchallusers = async(uid)=>{
+    try{
+      const response = await axios.get(`${backend_api}/getallusers/${uid}`)
+      return response
+    }catch(err){
+      console.log(err.message)
+    }
+  }
+  export const pushFollower = async(uid)=>{
+    try{
+      const response = await axios.get(`${backend_api}/push-follower/${uid}`)
+      return response
+    }catch(err){
+      console.log(err.message)
+    }
+  }
+
+  

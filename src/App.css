@@ -8,3 +8,10 @@
 body{
     background-color: #F4F2EE;
 }
+@keyframes breathing {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .breathing-placeholder {
+    animation: breathing 1.5s infinite ease-in-out;
+  }

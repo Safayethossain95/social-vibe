@@ -42,8 +42,8 @@ const Sidebar = ({ tabs }) => {
               <li
                 key={tab.id}
                 onClick={() =>  handleTabChange(tab.id)}
-                className={`h-[48px] ps-[14px] flex items-center rounded-[16px] cursor-pointer hover:bg-[#8b52fc82] my-1 duration-300 
-                  ${activeTab === tab.id ? " font-bold bg-[#8C52FC]" : ""} 
+                className={`h-[48px] ps-[14px] flex items-center rounded-[16px] cursor-pointer hover:bg-[#8C52FC] my-1 duration-300 
+                  ${activeTab === tab.id ? "text-white font-bold bg-[#8C52FC]" : ""} 
                    `}
               >
                 {tab.label}

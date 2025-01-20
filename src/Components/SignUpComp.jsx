@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { signupUser } from "../api/authApi";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SignUpComp = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -28,7 +30,7 @@ const SignUpComp = () => {
             console.log(formData);
             const data = await signupUser(formData);
             toast.success("Sign Up Successful:", data);
-            
+            navigate("/login")
           } catch (err) {
             toast.error(err || "Sign Up Failed");
           } finally {

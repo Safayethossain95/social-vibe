@@ -100,7 +100,7 @@ const MainContent = () => {
               </form>
             </div>
 
-            <h2 className="text-2xl font-bold  mt-5">Posts</h2>
+            
 
             <NewsfeedPosts />
             
