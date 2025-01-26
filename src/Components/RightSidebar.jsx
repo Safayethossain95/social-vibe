@@ -22,6 +22,7 @@ const RightSidebar = () => {
     window.addEventListener("resize", updatePadding);
     return () => window.removeEventListener("resize", updatePadding);
   }, []);
+  const [reload,setreload]=useState(0)
   const [data,setData] = useState([])
   useEffect(()=>{
     async function getallusers(){
@@ -31,10 +32,11 @@ const RightSidebar = () => {
       setData(res.data.data)
     }
     getallusers()
-  },[])
+  },[reload])
   const handlepushfollower=async(followerid)=>{
-    const data = await pushFollower(followerid)
+    const data = await pushFollower(localStorage.getItem("uid"),followerid)
     console.log(data)
+    setreload(p=>p+1)
   }
   return (
     <>

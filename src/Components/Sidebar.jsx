@@ -32,9 +32,9 @@ const Sidebar = ({ tabs }) => {
             width: `calc(2 / 12 * 100%)`, // 2.5fr based on a 12-column layout
             left: `${containerPadding}px`, // Adjusted to the container's right edge
           }}
-          className="div min-w-[220px] max-w-[280px]  h-[calc(100vh-130px)]  fixed top-[100px]"
+          className="div min-w-[220px] max-w-[280px]  h-[calc(100vh-130px)]  border bg-[#ffffff] w-full  p-2 rounded-[20px] fixed top-[100px]"
         >
-          <ul className=" border bg-[#ffffff] w-full h-full p-2 rounded-[20px] pointer-events-auto">
+          <ul className=" pointer-events-auto">
             
             
 
@@ -50,8 +50,26 @@ const Sidebar = ({ tabs }) => {
               </li>
             ))}
           </ul>
+          <div className="div">
+            <h3 className="text-[15px] p-4 font-bold border-b border-gray-200 mb-6">Followers</h3>
+          <div className="user-widget my-2">
+            <div className="flex items-center space-x-4">
+            <img
+              src="/assets/images/asequl.jpg"
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <div className="flex flex-col justify-center">
+              <h1 className="font-bold text-md leading-3">Safa hossain</h1>
+              <p className="text-gray-500 leading-5">React Developer</p>
+            </div>
+            </div>
+          </div>
         </div>
-        <div className="div"></div>
+         
+        
+        </div>
+       
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { backend_api } from "../config/config";
-
+import toast from 'react-hot-toast'
 export const createPost = async (formdata) => {
     try {
        
@@ -39,12 +39,14 @@ export const createPost = async (formdata) => {
       console.log(err.message)
     }
   }
-  export const pushFollower = async(uid)=>{
+  export const pushFollower = async(meid,uid)=>{
     try{
-      const response = await axios.get(`${backend_api}/push-follower/${uid}`)
-      return response
+      const response = await axios.post(`${backend_api}/push-follower/${meid}/${uid}`)
+      toast.success(response.data.message)
+      return response.data
     }catch(err){
-      console.log(err.message)
+      toast.error(err.message)
+      console.log(err)
     }
   }
 

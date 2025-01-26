@@ -1,18 +1,20 @@
 import axios from "axios";
 import { backend_api } from "../config/config";
-
+import toast from 'react-hot-toast'
 
 export const loginUser = async (formdata) => {
     try {
-        const {email, password} = formdata
-        console.log(email)
-      const response = await axios.post(`${backend_api}/login`, {
-        email,
-        password,
-      }, { withCredentials: true });
-      return response; // Return the response data (e.g., token or user info)
+        
+   
+      const response = await axios.post(`${backend_api}/login`, formdata, { withCredentials: true });
+      toast.success(response.data.message)
+      return response.data; 
     } catch (error) {
-      throw error.response
+      const errorMessage = String(
+        error.response?.data?.message || "An error occurred during login."
+      );
+      toast.error(errorMessage); // Show a string, not an object
+      console.log(errorMessage);
     }
   };
 export const signupUser = async (formdata) => {

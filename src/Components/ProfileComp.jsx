@@ -11,7 +11,7 @@ import Loader from "../utils/loading/Loading";
 import BreathingPlaceholder from "./BreathingPlaceholderComp";
 const ProfileComp = () => {
   const { isLogin, imageUrl, setImageUrl } = useTabContext();
-  const [finaldata, setFinaldata] = useState({});
+  const [finaldata, setFinaldata] = useState([]);
   const [loading,setLoading] = useState(false)
   useEffect(() => {
     async function fetchposts() {

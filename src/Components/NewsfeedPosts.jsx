@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
 import { useEffect, useState } from "react";
@@ -7,23 +8,26 @@ import { useTabContext } from "../context/TabProvider";
 import Loading from "../utils/loading/Loading";
 import { motion } from "framer-motion";
 import { img_api } from "../config/config";
-const NewsfeedPosts = () => {
-  const { isLogin } = useTabContext();
+const NewsfeedPosts = ({load}) => {
   const [finaldata, setFinaldata] = useState({});
   const [loading, setLoading] = useState(false);  
   useEffect(() => {
     async function fetchposts() {
-      if (isLogin) {
+      console.log("without login")
+      
+        if(localStorage.getItem("islogin")){
+          console.log("with login")
         const uid = localStorage.getItem("uid");
         setLoading(true)
         const data = await fetchOwnNewsfeed(uid);
         console.log(data);
         setLoading(false)
         setFinaldata(data);
-      } 
+        }
+      
     }
     fetchposts();
-  }, []);
+  }, [load]);
   return (
     <>
     {
@@ -37,8 +41,8 @@ const NewsfeedPosts = () => {
 
       </div>
       :
-
-    isLogin && <motion.h2 initial={{ opacity: 0, y: 20 }}
+      localStorage.getItem("islogin")==true &&
+     <motion.h2 initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: 20 }}
     transition={{ duration: 0.3 }} className="text-2xl font-bold  mt-5">Posts</motion.h2>}

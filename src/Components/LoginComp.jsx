@@ -28,23 +28,17 @@ const LoginComp = () => {
   
     const handleLogin = async (e) => {
       e.preventDefault();
-    
-      
-      
-  
       try {
-        console.log(formData);
         const data = await loginUser(formData);
         if(data){
             setIsLogin(true)
             setloading(true)
-            console.log("user id:", data.data.user.id);
+            console.log("user id:", data.user.id);
             // localStorage.setItem("token",data.data.token)
-            localStorage.setItem("uid",data.data.user.id)
-            setUserId(data.data.user.id)
+            localStorage.setItem("uid",data.user.id)
+            localStorage.setItem("islogin",true)
+            setUserId(data.user.id)
             navigate("/")
-        }else{
-          toast.error("Server Error")
         }
       } catch (err) {
         toast.error(err || "Could'n Connect to Server");
@@ -52,7 +46,7 @@ const LoginComp = () => {
     };
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-[#8C52FC]">
+      <div className="flex items-center justify-center min-h-screen bg-[#8C52FC] ">
         <form onSubmit={handleLogin} className="bg-white w-[500px] p-8 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
           <div className="mb-4">
@@ -90,7 +84,7 @@ const LoginComp = () => {
             {!loading ? 
           <button
             type="submit"
-            className="w-full bg-[#8C52FC] h-[50px] text-white py-2 px-4 rounded-lg hover:bg-[#7b49e5] focus:outline-none focus:ring-2 focus:ring-[#8C52FC] focus:ring-offset-2"
+            className="w-full bg-[#8C52FC] h-[50px] text-white py-2 px-4 rounded-lg hover:bg-[#7b49e5] focus:outline-none "
           >
             Login
             </button>

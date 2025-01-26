@@ -31,12 +31,13 @@ const MainContent = () => {
   }, []);
   const { activeTab, profileinfo, isLogin, setIsLogin } = useTabContext();
   const [imageUrl, setImageUrl] = useState("");
-
+  const [load,setLoad] = useState(false)
   useEffect(() => {
     localStorage.setItem("profileinfo", JSON.stringify(profileinfo));
     const pro_info = JSON.parse(localStorage.getItem("profileinfo"));
     console.log(pro_info);
     setImageUrl(pro_info?.profilePicture);
+    setLoad(true)
   }, [profileinfo]);
   
   const handlePost = async (e) => {
@@ -102,7 +103,7 @@ const MainContent = () => {
 
             
 
-            <NewsfeedPosts />
+            <NewsfeedPosts load={load}/>
             
           </motion.div>
         </>

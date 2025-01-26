@@ -3,9 +3,14 @@ import MainContent from "../Components/MainContent";
 import Sidebar from "../Components/Sidebar";
 import { tabsfr } from "../data";
 import MyNavbar from "../Components/MyNavbar";
+import { useEffect } from "react";
+import { useTabContext } from "../context/TabProvider";
 
 const Homepage = () => {
-
+  const {setActiveTab} = useTabContext()
+  useEffect(()=>{
+    setActiveTab("News Feed")
+  },[])
   return (
     <>
       <MyNavbar/>

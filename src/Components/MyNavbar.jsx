@@ -57,6 +57,7 @@ const MyNavbar = () => {
     const data = await logoutUser();
     console.log(data);
     setIsLogin(false);
+    localStorage.removeItem("islogin",false)
     setActiveTab("News Feed");
     navigate("/login");
   };

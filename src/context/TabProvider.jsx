@@ -16,7 +16,6 @@ export const TabProvider = ({ children }) => {
   const [profileinfo,setprofileinfo] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   
-  // Check login status on app load
  
   return (
     <TabContext.Provider value={{ activeTab, handleTabChange ,isLogin, setIsLogin,userid,setUserId,profileinfo,setprofileinfo,setActiveTab,imageUrl,
