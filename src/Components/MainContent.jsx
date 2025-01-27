@@ -9,6 +9,7 @@ import toast,{Toaster} from 'react-hot-toast';
 import { createPost, fetchOwnPost } from "../api/postApi";
 import ProfileComp from "./ProfileComp";
 import NewsfeedPosts from "./NewsfeedPosts";
+import OtherProfileComp from "./OtherProfileComp";
 const MainContent = () => {
   const [containerPadding, setContainerPadding] = useState(0);
  
@@ -31,13 +32,13 @@ const MainContent = () => {
   }, []);
   const { activeTab, profileinfo, isLogin, setIsLogin } = useTabContext();
   const [imageUrl, setImageUrl] = useState("");
-  const [load,setLoad] = useState(false)
+  const [load,setLoad] = useState(0)
   useEffect(() => {
     localStorage.setItem("profileinfo", JSON.stringify(profileinfo));
     const pro_info = JSON.parse(localStorage.getItem("profileinfo"));
     console.log(pro_info);
     setImageUrl(pro_info?.profilePicture);
-    setLoad(true)
+    setLoad(p=>p+1)
   }, [profileinfo]);
   
   const handlePost = async (e) => {
@@ -53,6 +54,9 @@ const MainContent = () => {
 
       const data = await createPost(formData)
       console.log(data)
+      setLoad(p=>p+1)
+      e.target.subject.value = '';
+      e.target.text.value = '';
       toast.success("Post created successfully")
     }else{
       
@@ -65,6 +69,9 @@ const MainContent = () => {
      
       {activeTab === "profile" && (
         <ProfileComp/>
+      )}
+      {activeTab === "othersprofile" && (
+        <OtherProfileComp />
       )}
       {activeTab === "News Feed" && (
         <>

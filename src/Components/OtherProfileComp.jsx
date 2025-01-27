@@ -10,16 +10,14 @@ import { backend_api, img_api } from "../config/config";
 import { useTabContext } from "../context/TabProvider";
 import Loader from "../utils/loading/Loading";
 import BreathingPlaceholder from "./BreathingPlaceholderComp";
-const ProfileComp = () => {
+const OtherProfileComp = () => {
   const { isLogin, imageUrl, setImageUrl } = useTabContext();
   const [finaldata, setFinaldata] = useState([]);
   const [loading,setLoading] = useState(false)
   useEffect(() => {
     async function fetchposts() {
       if (isLogin) {
-        
-          let uid = localStorage.getItem("uid");
-
+          let uid = localStorage.getItem("otheruid");
           const data = await fetchOwnPost(uid);
           console.log(data);
           
@@ -38,7 +36,8 @@ const ProfileComp = () => {
   const [desc,setDesc] = useState("")
   useEffect(() => {
     async function a() {
-        let uid = localStorage.getItem("uid");
+   
+        let uid = localStorage.getItem("otheruid");
          setLoading(true)
       const data = await getUser(uid);
       setIsUploading(true);
@@ -53,9 +52,8 @@ const ProfileComp = () => {
           
           setLoading(false)
         }, 2000);
-      
-
       }
+      
      
        
     }
@@ -63,7 +61,7 @@ const ProfileComp = () => {
   }, []);
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    const userId = localStorage.getItem("uid");
+    const userId = localStorage.getItem("otheruid");
     if (file && userId) {
       try {
         const formData = new FormData();
@@ -154,11 +152,11 @@ const ProfileComp = () => {
             </p>
           </div>
 
-          <SinglePost />
+          <SinglePost/>
         </div>
       </motion.div>
     </>
   );
 };
 
-export default ProfileComp;
+export default OtherProfileComp;

@@ -46,7 +46,7 @@ const NewsfeedPosts = ({load}) => {
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: 20 }}
     transition={{ duration: 0.3 }} className="text-2xl font-bold  mt-5">Posts</motion.h2>}
-      {finaldata?.posts?.map((item, key) => {
+      {finaldata?.posts?.slice().reverse().map((item, key) => {
         return (
           <>
             <motion.div initial={{ opacity: 0, y: 20 }}

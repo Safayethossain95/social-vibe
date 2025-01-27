@@ -7,19 +7,30 @@ import { useTabContext } from "../context/TabProvider";
 import { img_api } from "../config/config";
 import { motion } from "framer-motion";
 import Loader from "../utils/loading/Loading";
-const SinglePost = () => {
+const SinglePost = ({person}) => {
   const { isLogin } = useTabContext();
   const [finaldata, setFinaldata] = useState({});
   const [loading, setLoading] = useState(false); 
   useEffect(() => {
     async function fetchposts() {
       if (isLogin) {
-        const uid = localStorage.getItem("uid");
-        setLoading(true)
-        const data = await fetchOwnPost(uid);
-        setLoading(false)
-        console.log(data);
-        setFinaldata(data);
+        if(person=="other"){
+
+          const uid = localStorage.getItem("otheruid");
+          setLoading(true)
+          const data = await fetchOwnPost(uid);
+          setLoading(false)
+          console.log(data);
+          setFinaldata(data);
+        }else{
+
+          const uid = localStorage.getItem("uid");
+          setLoading(true)
+          const data = await fetchOwnPost(uid);
+          setLoading(false)
+          console.log(data);
+          setFinaldata(data);
+        }
       } 
     }
     fetchposts();

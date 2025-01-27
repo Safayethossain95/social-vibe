@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchallusers, pushFollower } from "../api/postApi";
 import { img_api } from "../config/config";
+import { useTabContext } from "../context/TabProvider";
 
 const RightSidebar = () => {
   const [containerPadding, setContainerPadding] = useState(0);
-
+  const { setReloadfollowers } = useTabContext();
   useEffect(() => {
     // Dynamically calculate the container's padding
     const updatePadding = () => {
@@ -36,6 +37,7 @@ const RightSidebar = () => {
   const handlepushfollower=async(followerid)=>{
     const data = await pushFollower(localStorage.getItem("uid"),followerid)
     console.log(data)
+    setReloadfollowers(p=>p+1)
     setreload(p=>p+1)
   }
   return (
@@ -72,7 +74,7 @@ const RightSidebar = () => {
             data?.map((item,key)=>{
               return(
                 <>
-                <div className="w-full my-2 bg-white rounded-lg shadow-md p-2 text-center">
+                <div key={key} className="w-full my-2 bg-white rounded-lg shadow-md p-2 text-center">
             <img
               src={`${img_api}/uploads/${item?.profilePicture}`}
               alt="Profile Image"

@@ -49,5 +49,23 @@ export const createPost = async (formdata) => {
       console.log(err)
     }
   }
+  export const getFollowers = async(uid)=>{
+    try{
+      const response = await axios.get(`${backend_api}/get-followers/${uid}`)
+      return response
+    }catch(err){
+      toast.error(err.message)
+      console.log(err)
+    }
+  }
+  export const getFollowing = async(uid)=>{
+    try{
+      const response = await axios.get(`${backend_api}/get-following/${uid}`)
+      return response
+    }catch(err){
+      toast.error(err.message)
+      console.log(err)
+    }
+  }
 
   

@@ -15,11 +15,11 @@ export const TabProvider = ({ children }) => {
   const [userid,setUserId] = useState(null);
   const [profileinfo,setprofileinfo] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
-  
+  const [reloadfollowers,setReloadfollowers] = useState(0)
  
   return (
     <TabContext.Provider value={{ activeTab, handleTabChange ,isLogin, setIsLogin,userid,setUserId,profileinfo,setprofileinfo,setActiveTab,imageUrl,
-      setImageUrl,load,setLoad}}>
+      setImageUrl,load,setLoad,reloadfollowers,setReloadfollowers}}>
       {children}
     </TabContext.Provider>
   );
