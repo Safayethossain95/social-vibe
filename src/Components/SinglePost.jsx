@@ -7,15 +7,15 @@ import { useTabContext } from "../context/TabProvider";
 import { img_api } from "../config/config";
 import { motion } from "framer-motion";
 import Loader from "../utils/loading/Loading";
-const SinglePost = ({person}) => {
-  const { isLogin } = useTabContext();
+const SinglePost = () => {
+  const { isLogin,imageUrlother } = useTabContext();
   const [finaldata, setFinaldata] = useState({});
   const [loading, setLoading] = useState(false); 
   useEffect(() => {
     async function fetchposts() {
       if (isLogin) {
-        if(person=="other"){
-
+        
+        if(imageUrlother){
           const uid = localStorage.getItem("otheruid");
           setLoading(true)
           const data = await fetchOwnPost(uid);
@@ -23,14 +23,15 @@ const SinglePost = ({person}) => {
           console.log(data);
           setFinaldata(data);
         }else{
-
-          const uid = localStorage.getItem("uid");
+          const uid2 = localStorage.getItem("uid");
           setLoading(true)
-          const data = await fetchOwnPost(uid);
+          const data2 = await fetchOwnPost(uid2);
           setLoading(false)
-          console.log(data);
-          setFinaldata(data);
+          console.log(data2);
+          setFinaldata(data2);
+
         }
+        
       } 
     }
     fetchposts();

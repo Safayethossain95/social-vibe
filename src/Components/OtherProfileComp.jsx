@@ -11,7 +11,7 @@ import { useTabContext } from "../context/TabProvider";
 import Loader from "../utils/loading/Loading";
 import BreathingPlaceholder from "./BreathingPlaceholderComp";
 const OtherProfileComp = () => {
-  const { isLogin, imageUrl, setImageUrl } = useTabContext();
+  const { isLogin, imageUrlother, setImageUrlother } = useTabContext();
   const [finaldata, setFinaldata] = useState([]);
   const [loading,setLoading] = useState(false)
   useEffect(() => {
@@ -36,7 +36,6 @@ const OtherProfileComp = () => {
   const [desc,setDesc] = useState("")
   useEffect(() => {
     async function a() {
-   
         let uid = localStorage.getItem("otheruid");
          setLoading(true)
       const data = await getUser(uid);
@@ -46,7 +45,7 @@ const OtherProfileComp = () => {
         setFname(data.data?.fullname)
         setEm(data.data?.email)
         setDesc(data.data?.desc)
-        setImageUrl(`${img_api}/uploads/${data.data?.profilePicture}`);
+        setImageUrlother(`${img_api}/uploads/${data.data?.profilePicture}`);
         setIsUploading(false);
         setTimeout(() => {
           
@@ -58,6 +57,7 @@ const OtherProfileComp = () => {
        
     }
     a();
+   
   }, []);
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
@@ -78,10 +78,10 @@ const OtherProfileComp = () => {
           }
         );
 
-        setImageUrl(`${img_api}${response.data?.imageUrl}`);
+        setImageUrlother(`${img_api}${response.data?.imageUrlother}`);
         console.log(
           "Uploaded Image URL:",
-          `${img_api}${response.data?.imageUrl}`
+          `${img_api}${response.data?.imageUrlother}`
         );
       } catch (error) {
         console.error("Error uploading image:", error);
@@ -107,7 +107,7 @@ const OtherProfileComp = () => {
             />
 
             <div className="pro_pic shadow-[-4px_5px_23px_2px_rgba(139,_81,_253,_0.25)] absolute bg-teal-400 rounded-full w-40 h-40 -bottom-20 left-20 flex justify-center overflow-hidden items-center cursor-pointer">
-              {isUploading ? <Loader /> : <img src={imageUrl} alt="" />}
+              {isUploading ? <Loader /> : <img src={imageUrlother} alt="" />}
 
               <label
                 htmlFor="fileInput"

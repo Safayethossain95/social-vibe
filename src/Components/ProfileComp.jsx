@@ -37,12 +37,13 @@ const ProfileComp = () => {
   const [em,setEm]= useState("")
   const [desc,setDesc] = useState("")
   useEffect(() => {
+    let isMounted = true; 
     async function a() {
         let uid = localStorage.getItem("uid");
          setLoading(true)
       const data = await getUser(uid);
       setIsUploading(true);
-      if (data) {
+      if (isMounted && data) {
         console.log(data.data);
         setFname(data.data?.fullname)
         setEm(data.data?.email)
@@ -60,6 +61,9 @@ const ProfileComp = () => {
        
     }
     a();
+    return () => {
+      isMounted = false; // Cleanup flag
+    };
   }, []);
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
